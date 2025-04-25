@@ -1,16 +1,12 @@
 from flask import Flask, render_template, request
-from pysnmp.hlapi import (
-    getCmd, setCmd, nextCmd, bulkCmd,
-    SnmpEngine, CommunityData, UdpTransportTarget,
-    ContextData, ObjectType, ObjectIdentity
-)
+from pysnmp.hlapi.v3arch.asyncio import get_cmd
 from pysnmp.proto.rfc1902 import OctetString, Integer
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("index.html")
+    return render_template("form.html")
 
 @app.route("/snmp", methods=["POST"])
 def snmp():
@@ -26,11 +22,11 @@ def snmp():
         oid += ".0"
 
     if operation == "get":
-        result = snmp_get(agent_ip, community, oid)
+        result = snmpget(agent_ip, community, oid)
     elif operation == "next":
-        result = snmp_next(agent_ip, community, oid)
+        result = snmpnext(agent_ip, community, oid)
     elif operation == "bulkwalk":
-        result = snmp_bulkwalk(agent_ip, community, oid)
+        result = snmpbulkwalk(agent_ip, community, oid)
     elif operation == "set":
         if set_type == "OctetString":
             value = OctetString(set_value)
@@ -39,7 +35,7 @@ def snmp():
                 value = Integer(int(set_value))
             except ValueError:
                 return render_template("result.html", result=["Valor no vàlid per a Integer."])
-        result = snmp_set(agent_ip, community, oid, value)
+        result = snmpset(agent_ip, community, oid, value)
     else:
         result = ["Operació no reconeguda"]
 

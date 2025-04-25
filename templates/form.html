@@ -3,7 +3,7 @@
 <head><title>MIB Browser</title></head>
 <body>
   <h1>Consulta SNMP</h1>
-  <form method="POST" action="/operacio">
+  <form method="POST" action="/result.html">
     IP Agent: <input type="text" name="ip"><br>
     Versió SNMP: 
     <select name="versio">
@@ -12,8 +12,8 @@
     </select><br>
     Comunitat: <input type="text" name="community"><br>
     OID: <input type="text" name="oid"><br>
-    Operació:
-    <select name="operacio">
+    Result:
+    <select name="result">
       <option value="get">GET</option>
       <option value="next">NEXT</option>
       <option value="set">SET</option>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultat SNMP</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Resultat de l'operació SNMP</h1>
+    <ul>
+        <li><span>IP de l'agent:</span> {{ agent_ip }}</li>
+        <li><span>Versió SNMP:</span> {{ version }}</li>
+        <li><span>Comunitat:</span> {{ community }}</li>
+        <li><span>OID:</span> {{ oid }}</li>
+        <li><span>Operació:</span> {{ operation }}</li>
+    </ul>
+    <a href="/">Torna al formulari</a>
+    <div>
+        {% for line in result %}
+            {% if '=' in line and line.split('=')|length > 1 %}
+                <div class="result-item">
+                    <div class="enunciado">{{ line.split('=')[0].strip() }}</div>
+                    <div class="respuesta">{{ line.split('=')[1].strip() }}</div>
+                </div>
+            {% else %}
+                <div class="result-item">
+                    <div class="enunciado">Entrada no válida:</div>
+                    <div class="respuesta">{{ line }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

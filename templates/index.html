@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>MIB Browser</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>MIB Browser  de Eric Romero Gómez </h1>
+    <form action="/snmp" method="post">
+        <label>IP de l'agent: <input type="text" name="agent_ip" required></label><br>
+        <label>Versió SNMP:
+            <select name="version">
+                <option value="1">v1</option>
+                <option value="2c">v2c</option>
+            </select>
+        </label><br>
+        <label>Comunitat: <input type="text" name="community" value="public"></label><br>
+        <label>OID: <input type="text" name="oid" required></label><br>   
+        <label>Valor a estableixer: <input type="text" name="set_value"></label><br>
+        <label>Tipus de valor:
+            <select name="set_type">
+                <option value="OctetString">OctetString</option>
+                <option value="Integer">Integer</option>
+            </select>
+        </label><br>
+        <label>Operació:
+            <select name="operation">
+                <option value="get">GET</option>
+                <option value="next">NEXT</option>
+                <option value="set">SET</option>
+                <option value="bulkwalk">BULKWALK</option>
+            </select>
+        </label><br>
+        <button type="submit">Entrega</button>
+    </form>
+</body>
+</html>

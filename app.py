@@ -13,7 +13,7 @@ from pysnmp.entity.rfc3413 import ntfrcv
 from datetime import datetime
 import threading
 import socket
-import psycopg2
+import pymysql
 
 app = Flask(__name__)
 
@@ -21,16 +21,16 @@ puerto = 162
 
 DB_CONFIG = {
     'host': '127.0.0.1',
-    'port': 5432,
-    'user': 'Ericssxn',
-    'password': '1234',
-    'dbname': 'mib_browser_er'
+    'port': 3306,
+    'user': 'eric',
+    'password': 'eric',
+    'database': 'mib_browser_er'
 }
 
 def get_db_connection():
     try:
-        return psycopg2.connect(**DB_CONFIG)
-    except psycopg2.OperationalError as e:
+        return pymysql.connect(**DB_CONFIG)
+    except pymysql.MySQLError as e:
         print(f"Error, no se puede conectar con la base de datos: {e}")
         return None
 

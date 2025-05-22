@@ -13,9 +13,9 @@
         <input type="text" id="agent_ip" name="agent_ip" required><br><br>
         <label for="version">Versió SNMP:</label>
         <select id="version" name="version" onchange="showFields()">
-            <option value="1">v1</option>
-            <option value="2c" selected>v2c</option>
-            <option value="3">v3</option>
+            <option value="v1">v1</option>
+            <option value="v2c" selected>v2c</option>
+            <option value="v3">v3</option>
         </select><br><br>
         <div id="v3" style="display: none;">
             <label for="user">Usuario:</label>
@@ -86,7 +86,7 @@
         const communityDiv = document.getElementById('community');
 
         function showFields() {
-            if (versionSelect.value === "3") {
+            if (versionSelect.value === "v3") {
                 v3Div.style.display = "block";
                 communityDiv.style.display = "none";
             } else {

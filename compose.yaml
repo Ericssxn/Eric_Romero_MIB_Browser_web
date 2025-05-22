@@ -1,14 +1,1 @@
-services:
-  db_server:
-    container_name: ericssxn
-    image: postgres
-    restart: always
-    shm_size: 128mb
-    environment: 
-      POSTGRES_USER: Ericssxn
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: mib_browser_er
-    volumes:
-        - ./my_data:/my_data
-    ports:
-        - '5432:5432'
+

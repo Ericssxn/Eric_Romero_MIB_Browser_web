@@ -300,7 +300,7 @@ def trap_callback(snmpEngine, stateReference, contextEngineId, contextName, varB
 
 def start_trap_listener():
     snmpEngine = engine.SnmpEngine()
-    config.addV1System(snmpEngine, 'my-area', 'public_mp')
+    config.addV1System(snmpEngine, 'my-area', 'public_er')
     config.addTransport(
         snmpEngine,
         udp.domainName,
